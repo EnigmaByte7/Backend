@@ -1,3 +1,6 @@
+# To see if server is live .. try this 
+**https://backend-1v0u.onrender.com/form/test**
+
 # there are 2 GET endpoints 
 ## /form/projects .. returns the json of all project data 
 
