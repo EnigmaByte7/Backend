@@ -10,7 +10,8 @@ like following
 
 
 **second get endpoint is -**
-## /form/projects/:id, it takes an id of Object_id tpye returned by mongoDB
+## /form/projects/:id
+**it takes an id of Object_id tpye returned by mongoDB**
 **similar to /projects endpoint, this return the data of a particular project you need ..**
 
 # The two post endpoints
