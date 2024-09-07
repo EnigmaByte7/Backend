@@ -1,6 +1,9 @@
 const PData = require('../models/Project.js');
+const TData = require('../models/Talks.js');
 const express = require('express');
 const router = express.Router();
+
+
 router.get('/test', (req, res)=>{
     res.status(200).send('Everything is fine')
 })
@@ -75,5 +78,40 @@ router.post('/projects/vote', async (req, res) => {
         res.status(500).json({ error: 'Failed ' });
     }
 });
+
+router.post('/submit/talks', async (req, res) => {
+        const {text} = req.body;
+        try {
+            let tData = await TData.findOne();
+
+            if (!tData) {
+                tData = new TData({ content: [] });
+            }
+
+            tData.content.push(text);
+
+            await tData.save();
+
+            res.status(200).json({ message: 'Success', data: tData });
+        } catch (error) {
+            res.status(500).json({ message: 'Failed', error });
+        }
+    
+});
+
+router.get('/talks', async (req, res) => {
+    try{
+        const Tdata = await TData.findOne();
+
+        if(!Tdata){
+            Tdata = [];
+        } 
+
+        res.status(200).json({ message: 'Success', data: Tdata.content });
+    }
+    catch(error){
+        res.status(500).json({ message : 'Error', error});
+    }
+})
 
 module.exports = router;
